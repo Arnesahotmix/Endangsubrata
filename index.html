@@ -1,0 +1,134 @@
+Buatkan website landing page premium untuk perusahaan jasa pengaspalan bernama "Arnesa Hotmix" menggunakan HTML, CSS, dan JavaScript murni dalam satu file.
+
+=== TECH STACK ===
+- Single file HTML (inline CSS + JS)
+- Google Fonts: Montserrat (display) + Poppins (body)
+- Vanilla JS untuk scroll animation dan interaksi
+- Tidak perlu framework atau library eksternal
+
+=== DESIGN SYSTEM ===
+Warna:
+  --black: #0a0a0a
+  --dark: #111418
+  --dark2: #181d24
+  --dark3: #1e242d
+  --blue: #3b82f6
+  --blue-light: #60a5fa
+  --blue-dim: #1e3a5f
+  --gray: #8a9ab0
+  --gray-light: #c4cdd8
+  --white: #f4f6f9
+  --glass: rgba(255,255,255,0.04)
+  --glass-border: rgba(255,255,255,0.08)
+
+Typography:
+  - Heading: Montserrat, weight 700–900
+  - Body: Poppins, weight 300–600
+  - Font sizes: clamp() untuk responsif
+
+Effects:
+  - Glassmorphism: background rgba + backdrop-filter: blur()
+  - Hover cards: translateY(-6px) + border-color + box-shadow
+  - Scroll reveal: IntersectionObserver dengan opacity + translateY
+  - Navbar: sticky + backdrop-filter blur, background berubah saat scroll
+
+=== STRUKTUR SECTIONS ===
+
+1. NAVBAR (fixed, z-index 100)
+   - Logo: "ARNESA HOTMIX" (span accent biru pada "HOTMIX")
+   - Links: Tentang | Layanan | Keunggulan | Galeri | Testimoni
+   - CTA button: "WhatsApp" → href ke https://wa.me/6281315326460
+   - Mobile: hamburger menu dengan toggle JS
+   - Scroll effect: background makin gelap saat scroll
+
+2. HERO SECTION (min-height: 100vh)
+   - Background: dark industrial dengan asphalt dot texture (SVG pattern)
+   - Elemen dekoratif: garis jalan vertikal (repeating-gradient), radial glow biru
+   - Badge animasi: "● Cirebon & Sekitarnya" dengan pulse animation
+   - H1: "Jasa Pengaspalan / Profesional / & Berkualitas"
+   - Paragraf: "Melayani pengaspalan jalan, area parkir, perumahan, dan proyek industri dengan hasil rapi dan tahan lama."
+   - Buttons: [WhatsApp CTA] [Lihat Layanan →]
+   - Stats bar: 200+ Proyek | 10+ Tahun | 100% Klien Puas | 24/7 Konsultasi
+   - Semua elemen: animation fadeUp dengan stagger delay
+
+3. TENTANG KAMI (background: --dark2)
+   - Layout: CSS Grid 2 kolom
+   - Kiri: section-tag, h2, divider, paragraf deskripsi perusahaan, checklist keunggulan
+   - Kanan: card glassmorphism dengan:
+     - Row icon (3 emoji icon dalam kotak biru transparan)
+     - Judul + deskripsi singkat
+     - 4 mini-stat cards: Unit Alat Berat | Tenaga Ahli | Kecepatan | Garansi
+
+4. LAYANAN (background: --dark)
+   - Header centered dengan section-tag + h2 + divider
+   - Grid: repeat(auto-fit, minmax(280px, 1fr))
+   - 6 cards:
+     1. 🛣️ Aspal Hotmix
+     2. 🏘️ Jalan Perumahan
+     3. 🅿️ Area Parkir
+     4. 🔧 Tambal Sulam Jalan
+     5. ⚙️ Pemadatan Jalan
+     6. 💬 Konsultasi Gratis
+   - Card style: glass bg, border, rounded-16px, hover lift + top border glow
+
+5. KEUNGGULAN (background: --dark2)
+   - Grid: repeat(auto-fit, minmax(200px, 1fr))
+   - 6 items:
+     1. ⚡ Pengerjaan Cepat — badge "On-Time Delivery"
+     2. 💎 Material Berkualitas — badge "Standar SNI"
+     3. 👷 Tenaga Profesional — badge "10+ Tahun"
+     4. 💰 Harga Kompetitif — badge "Transparan"
+     5. 🛡️ Bergaransi — badge "Garansi 1 Tahun"
+     6. 📐 Survey Gratis — badge "Tanpa Biaya"
+   - Badge style: pill biru transparan
+
+6. GALERI (background: --dark)
+   - CSS Grid layout: 3 kolom, 2 baris
+   - Item 1 (big, span 2): Jalan Hotmix — asphalt dot texture background
+   - Item 2: Alat Berat — gradient gelap
+   - Item 3: Proses Pengaspalan
+   - Item 4 (big, span 2): Area Parkir — grid line background
+   - Item 5: Jalan Perumahan
+   - Setiap item: overlay gradient + tag label biru di pojok kiri bawah
+   - Hover: scale(1.02)
+
+7. TESTIMONI (background: --dark2)
+   - 3 cards horizontal grid
+   - Tiap card: tanda kutip besar, teks italic, bintang ★★★★★, avatar inisial + nama + peran
+   - Avatar: lingkaran gradient biru dengan inisial 2 huruf
+
+8. CTA SECTION
+   - Background: dark dengan radial glow biru di tengah
+   - Tag pill + H2 besar + paragraf + 2 tombol:
+     [Konsultasi Gratis] (outline) | [Hubungi Sekarang] (solid biru + ikon WA)
+   - Info kontak: 📞 0813 153 2646 | ✉️ endangsubrata2@gmail.com | 📍 Sedonglor, Sedong
+
+9. FOOTER
+   - Grid 3 kolom: Brand | Layanan | Kontak
+   - Brand: logo + tagline + icon sosial
+   - Layanan: 6 link navigasi
+   - Kontak: WA, email, alamat, jam operasional
+   - Footer bottom: copyright + area layanan
+   - Border top: rgba putih tipis
+
+=== JAVASCRIPT ===
+1. Scroll reveal: IntersectionObserver pada class .reveal → tambah .visible
+   - .visible: opacity 1 + translateY(0), transition .7s ease
+   - Support: reveal-delay-1 s/d reveal-delay-5 (step 0.1s)
+2. Navbar scroll: window.addEventListener scroll → ubah background navbar
+3. Mobile hamburger: toggle display flex/none pada .nav-links
+   - Mobile nav: position fixed, full width, backdrop-filter blur
+
+=== RESPONSIVE ===
+- Desktop: layout penuh, grid multi-kolom
+- Tablet (≤900px): about-grid 1 kolom, gallery 2 kolom
+- Mobile (≤640px): navbar links hidden, hamburger aktif, semua grid 1 kolom
+
+=== DATA KONTAK ===
+- WhatsApp: https://wa.me/6281315326460
+- Email: endangsubrata2@gmail.com
+- Alamat: Desa Sedonglor, Kec. Sedong, Kab. Cirebon, Jawa Barat
+- Maps : https://www.google.com/maps/@-6.8704696,108.5814646,70m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI2MDUxNy4wIKXMDSoASAFQAw%3D%3D
+- Jam: Senin–Sabtu, 07.00–17.00 WIB
+
+Output: Satu file HTML lengkap, production-ready, tidak ada placeholder atau komentar TODO.
